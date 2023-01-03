@@ -1,0 +1,61 @@
+body {
+    background-color: #eff5f8
+  }
+
+.title {
+    text-align: center;
+    color:purple; 
+    font-weight: bold;
+}
+
+.time {
+  margin-left:200px;
+}
+
+.buttoncontainer {
+    margin: 80px auto;
+    text-align: center;
+    align-items: center;
+    padding-top: 00px;
+  }
+
+.BeginQuiz {
+  font-weight: bold; 
+  text-align: center;
+}
+
+.startQuizButton, .submitnamebutton, .gobackbutton {
+    padding: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: purple;
+    color: white;
+  }
+
+
+
+.multiplechoice button{
+  background-color: #247BA0;
+  border: 1px solid white; 
+  color: white; 
+  padding: 10px 24px;
+  cursor: pointer;
+  width: 50%;
+  display: block;
+}
+
+.multiplechoice button:not(:last-child){
+  border-bottom: none;
+}
+
+.multiplechoice button:hover{
+  background-color: lightcyan;
+  color:black;
+}
+
+
+  @media screen and (min-width: 600px) {
+    img {
+        min-width: 60%;
+    }
+  }
