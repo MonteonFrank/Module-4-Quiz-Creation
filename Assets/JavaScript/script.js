@@ -305,8 +305,8 @@ function renderMessage(){
 
 	var lastScore = JSON.parse(localStorage.getItem("HighScores"));
 	HighScoreContainer.innerHTML = lastScore.scores.reduce(
-		(accumulator, currentValue) => accumulator + "<br>" + currentValue.initials + ": " + currentValue.score,
-		"Scores: <br>"
+		(accumulator, currentValue) => accumulator + "<br><li>" + currentValue.initials + ": " + currentValue.score + "</li>",
+		"Quiz Scores: <br>"
 
 	);
 
