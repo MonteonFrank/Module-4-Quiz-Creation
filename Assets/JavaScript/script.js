@@ -22,9 +22,6 @@ var quizComplete = false;
 var AllHighScores = [];
 
 
-//AllHighScores = JSON.parse(localStorage.getItem("AllHighScores")); //Text into JS Object
-
-
 //Set attributes dynamically and hide some elements at the beginning of the quiz
 quizquestion.setAttribute("style", "align-text:center");
 multiplechoiceContainer.style.display = "none";
@@ -89,7 +86,6 @@ var QuizAnswersQ5 = {
 function setTime() {
 
 
-
 	StartButtonContainer.style.display = "none";
     paragraphBeginQuiz.style.display = "none";
 
@@ -115,9 +111,8 @@ function setTime() {
 
 	}
 //Function per question to dinamically change as the user answers the quiz
+//Also calls the correct and wrong functions which inidcate if the user answered correctly or incorrectly
 function Q1Question(){
-
-
 
 	console.log(quizComplete);
 
@@ -143,9 +138,6 @@ function Q1Question(){
 	
 	option4.addEventListener("click", wrong);
 	option4.addEventListener("click", Q2Question);
-
-
-
 }
 
 function Q2Question(){
@@ -239,6 +231,7 @@ function Q5Question (){
 
 }
 
+//This function shows if the user answered correctly and also adds a counter to indicate how many correct answers the user has
 function correct(){
 
 
@@ -249,6 +242,7 @@ function correct(){
 	console.log(score);
 
 }
+//This function shows if the user answered incorrectly and also deducts 10 seconds from the timer
 function wrong(){
 
 	grades.textContent = "Wrong!";
@@ -257,6 +251,11 @@ function wrong(){
 	secondsLeft = secondsLeft - 10;
 	}        
 
+
+//This function shows the number of correct questions the user answered
+//Also dynamically shows the input area where the user can type in their initials
+//The initials are then stored in local storage and when submitting their initials, disables the submit button, forcing the user to click on the go back function
+//For the local storage, I obtained the partial code from stack overflow and assistance from a tutor
 function showgrades(){
 
 	multiplechoiceContainer.style.display = "none";
@@ -301,6 +300,8 @@ submitnamebutton.addEventListener("click", function() {
 
 	});
 
+//This function displayes the history of initials and scores of the users who have done the quiz
+//This part of the code was also found partially in stack overflow and from the assistance of a tutor.
 function renderMessage(){
 
 	var lastScore = JSON.parse(localStorage.getItem("HighScores"));
@@ -313,6 +314,7 @@ function renderMessage(){
 
 }
 
+//This function reloads the page which restarts the quiz but the scores and initials are intact because they are located in local storage
 gobackbutton.addEventListener("click", function(){
 
 	window.location.reload();
