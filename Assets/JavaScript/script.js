@@ -276,52 +276,39 @@ function showgrades(){
 
 submitnamebutton.addEventListener("click", function() {
 
-	var HighScore = [{
-	  Initials: initialsinput.value,
-	  Score: score,
-	}];
+	submitnamebutton.style.display = "none";
 
-if(localStorage.getItem("AllHighScores") === null){
 
-	AllHighScores.push(HighScore);
-	localStorage.setItem("AllHighScores", JSON.stringify(AllHighScores));
-	AllHighScores = JSON.parse(localStorage.getItem("AllHighScores"));
-	renderMessage();
-	console.log(AllHighScores);
+	if (localStorage.getItem("HighScores")== null){
+	
+	  var QuizScores = {
+	  scores: []
+	};
+
+	QuizScores.scores.push({initials: initialsinput.value, score: score})
+	localStorage.setItem("HighScores", JSON.stringify(QuizScores));
+	}
+
+	else {
+		var savedquizscore = JSON.parse(localStorage.getItem("HighScores"));
+		savedquizscore.scores.push({initials: initialsinput.value, score: score});
+		localStorage.setItem("HighScores", JSON.stringify(savedquizscore));
 
 	}
 
-else{
-		
-		AllHighScores = JSON.parse(localStorage.getItem("AllHighScores"));
-		AllHighScores.push(HighScore);
-		console.log(AllHighScores);
-		localStorage.setItem("AllHighScores", JSON.stringify(AllHighScores));
 
-	submitnamebutton.style.display = "none";
+	renderMessage();	
 
-	renderMessage();
-}
 	});
 
 function renderMessage(){
 
-	//do not touch
-	HighScoreContainer.textContent = JSON.stringify(AllHighScores);
-	console.log(HighScoreContainer);
+	var lastScore = JSON.parse(localStorage.getItem("HighScores"));
+	HighScoreContainer.innerHTML = lastScore.scores.reduce(
+		(accumulator, currentValue) => accumulator + "<br>" + currentValue.initials + ": " + currentValue.score,
+		"Scores: <br>"
 
-	//testing
-	var ol = document.createElement("ol");
-	var list = JSON.stringify(localStorage.getItem("AllHighScores"));
-	for (var i = 0 ; i<list.length ; i++){
-		var li = document.createElement("li");
-		var text = document.createTextNode(list[i]);
-		li.appendChild(text);
-		ol.appendChild(li);
-		console.log(list);
-	}
-
-document.getElementById("record").appendChild(ol);
+	);
 
 
 }
